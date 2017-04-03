@@ -2,6 +2,11 @@
 
 import os
 import os.path
+import multiprocessing
+
+num_jobs = min(int(multiprocessing.cpu_count() + 1), 9)
+SetOption("num_jobs", num_jobs)
+print("scons: Using at maximum " + str(num_jobs) + " number of jobs")
 
 SetOption('random', 1);         # randomize build order
 
