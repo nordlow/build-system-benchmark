@@ -4,13 +4,13 @@ import os, sys
 import unittest
 
 def gen(root_path='src',
-        fileCount=1000,
-        headerCount=100):
+        file_count=1000,
+        header_count=100):
 
     try: os.makedirs(root_path);
     except: pass                # ok if exists
 
-    for i in range(fileCount):
+    for i in range(file_count):
         istr = '{num:05d}'.format(num=i)
         f = open(root_path+'/test_'+istr+'.c', 'w');
 
@@ -21,7 +21,7 @@ def gen(root_path='src',
 ''');
 
         # include local headers
-        for j in range(headerCount):
+        for j in range(header_count):
             jstr = '{num:05d}'.format(num=j)
             f.write('''#include "utils_''' + jstr + '''.h"\n''');
 
@@ -33,7 +33,7 @@ int f_''' + istr +'''(int x)
 ''');
         f.close();
 
-    for i in range(headerCount):
+    for i in range(header_count):
         istr = '{num:05d}'.format(num=i)
         f = open(root_path+'/utils_'+istr+'.h', 'w');
         f.write('''#include <stdio.h>
