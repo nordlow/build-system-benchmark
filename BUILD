@@ -1,5 +1,6 @@
 cc_library(
     name = "bench",
-    srcs = glob(["src/*.c"]),
-    hdrs = glob(["src/*.h"]),
+    srcs = glob(["src/*.c", "src/*.h"]),
+#   hdrs = glob(["src/*.h"]),
+    linkstatic = 1,
 )
