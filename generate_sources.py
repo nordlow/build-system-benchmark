@@ -4,8 +4,8 @@ import os, sys
 import unittest
 
 def gen(root_path='src',
-        fileCount=2000,
-        headerCount=10):
+        fileCount=10000,
+        headerCount=100):
 
     try: os.makedirs(root_path);
     except: pass                # ok if exists
