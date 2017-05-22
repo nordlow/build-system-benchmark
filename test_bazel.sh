@@ -3,4 +3,4 @@
 CPU_COUNT="$(grep -c processor /proc/cpuinfo)";
 
 ./generate_sources.py
-scons -s -j ${CPU_COUNT}
+bazel build -j ${CPU_COUNT} :bench
