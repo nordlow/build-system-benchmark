@@ -3,5 +3,5 @@
 CPU_COUNT="$(grep -c processor /proc/cpuinfo)";
 
 ./generate_sources.py
-mkdir build
+mkdir -p build
 make -s -j ${CPU_COUNT}
