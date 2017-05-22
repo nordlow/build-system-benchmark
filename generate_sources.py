@@ -4,7 +4,7 @@ import os, sys
 import unittest
 
 def gen(root_path='src',
-        fileCount=10000,
+        fileCount=1000,
         headerCount=100):
 
     try: os.makedirs(root_path);
