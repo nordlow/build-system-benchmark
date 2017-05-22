@@ -8,8 +8,7 @@ def gen(root_path='src',
         file_count=1000,
         header_count=100):
 
-    try: os.makedirs(root_path);
-    except: pass                # ok if exists
+    os.makedirs(root_path, exist_ok=True)
 
     for i in range(file_count):
         istr = '{num:05d}'.format(num=i)
