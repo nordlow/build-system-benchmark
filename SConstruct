@@ -13,7 +13,7 @@ SetOption('random', 1);         # randomize build order
 env = Environment(LINK="ld.gold") # Initialize the environment
 env.Decider('MD5-timestamp')
 
-build_dir = 'build'
+build_dir = 'build/scons'
 home_dir = os.path.expanduser('~')
 
 # setup cache

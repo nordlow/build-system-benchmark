@@ -9,7 +9,7 @@ def gen(root_path='src',
 
     try: os.makedirs(root_path);
     except: pass                # ok if exists
-    
+
     for i in range(fileCount):
         istr = '{num:05d}'.format(num=i)
         f = open(root_path+'/test_'+istr+'.c', 'w');
@@ -24,7 +24,7 @@ def gen(root_path='src',
         for j in range(headerCount):
             jstr = '{num:05d}'.format(num=j)
             f.write('''#include "utils_''' + jstr + '''.h"\n''');
-            
+
         f.write('''
 int f_''' + istr +'''(int x)
 {
