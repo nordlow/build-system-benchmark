@@ -1,4 +1,4 @@
-SRCS=src/*.c
+SRCS=$(wildcard src/*.c)
 HDRS=src/utils_*.h
 OBJS=$(patsubst %.c,%.o,$(SRCS))
 
