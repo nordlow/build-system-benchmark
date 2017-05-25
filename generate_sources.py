@@ -30,7 +30,7 @@ int f_''' + istr + '''(int x)
     return x+1;
 }
 ''')
-            f.close()
+        f.close()
 
     for i in range(header_count):
         istr = '{num:05d}'.format(num=i)
