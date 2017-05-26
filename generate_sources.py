@@ -5,7 +5,7 @@ import os
 
 def gen(root_path='src',
         file_count=10000,
-        header_count=100):
+        header_count=10):
 
     os.makedirs(root_path, exist_ok=True)
 
@@ -25,7 +25,7 @@ def gen(root_path='src',
             f.write('''#include "utils_''' + jstr + '''.h"\n''')
 
             f.write('''
-int f_''' + istr + '''(int x)
+int f_''' + jstr + '''(int x)
 {
     return x+1;
 }
