@@ -4,7 +4,7 @@ import os
 
 
 def gen(root_path='src',
-        file_count=10000,
+        file_count=1000,
         header_count=10):
 
     os.makedirs(root_path, exist_ok=True)
