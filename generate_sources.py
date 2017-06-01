@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 import os
+import shutil
 
 
 def gen(root_path='src',
         file_count=1000,
         header_count=10):
+
+    shutil.rmtree(root_path)
 
     os.makedirs(root_path, exist_ok=True)
 
