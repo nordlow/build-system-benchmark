@@ -1,4 +1,6 @@
 project('bench', 'c')
 
-# TODO this doesn't work
-static_library('bench', 'src/*.c')
+c = run_command('grabber.sh')
+sources = c.stdout().strip().split('\n')
+
+static_library('bench', sources)

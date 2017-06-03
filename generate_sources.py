@@ -6,7 +6,7 @@ import shutil
 
 def gen(root_path='src',
         file_count=1000,
-        header_count=10):
+        header_count=1000):
 
     shutil.rmtree(root_path, ignore_errors=True)
 
