@@ -9,6 +9,7 @@ action_listener(
     name = "cppcheck_c_cpp",
     mnemonics = [
         "CCompile",
+        "CcCompile",
         "CppCompile",
     ],
     extra_actions = [":cppcheck_cat"],
