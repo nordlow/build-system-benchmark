@@ -28,7 +28,7 @@ def gen(root_path='src',
             f.write('''#include "utils_''' + jstr + '''.h"\n''')
 
             f.write('''
-int f_''' + jstr + '''(int x)
+int ffff_''' + jstr + '''(int x)
 {
     return x+1;
 }
