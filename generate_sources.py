@@ -30,7 +30,6 @@ def gen(root_path='src',
             f.write('''
 int ffff_''' + jstr + '''(int x)
 {
-    float unused_float;
     return x+1;
 }
 ''')

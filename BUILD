@@ -8,19 +8,13 @@ cc_library(
 action_listener(
     name = "cppcheck_c_cpp",
     mnemonics = [
-        "CCompile",
-        "CcCompile",
         "CppCompile",
     ],
-    extra_actions = [":cppcheck_cat"],
+    extra_actions = [":cppcheck_echo"],
+    visibility = ["//visibility:public"],
 )
 
 extra_action(
     name = "cppcheck_echo",
-    cmd = "echo $(EXTRA_ACTION_FILE)",
-)
-
-extra_action(
-    name = "cppcheck_cat",
-    cmd = "cat $(EXTRA_ACTION_FILE)",
+    cmd = "echo cppcheck_echo: $(EXTRA_ACTION_FILE)",
 )
