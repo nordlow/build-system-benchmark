@@ -5,7 +5,7 @@ import shutil
 
 
 def regenerate_sources(src_path='src',
-                       lib_count=2000,
+                       lib_count=1,
                        file_count=10,
                        header_count=10):
 
@@ -31,7 +31,6 @@ import multiprocessing
 
 num_jobs = min(int(multiprocessing.cpu_count() + 1), 9)
 SetOption("num_jobs", num_jobs)
-print("scons: Using at maximum " + str(num_jobs) + " number of jobs")
 
 SetOption('random', 1);         # randomize build order
 
