@@ -13,16 +13,26 @@ def regenerate_sources(root_path='src',
 
     os.makedirs(root_path, exist_ok=True)
 
-    for lib_index in range(0, lib_count):
-        lib_prefix = 'lib' + '{num:03d}'.format(num=lib_index)
+    # generate top Bazel BUILD file
+    with open(os.path.join(root_path, "BUILD"), 'w') as f:
+        f.write('''''')
 
-        sub_path = os.path.join(root_path, lib_prefix)
+    # generate top Bazel WORKSPACE file
+    with open(os.path.join(root_path, "WORKSPACE"), 'w') as f:
+        f.write('''''')
+
+
+    for lib_index in range(0, lib_count):
+        lib_name = 'lib' + '{num:03d}'.format(num=lib_index)
+
+        sub_path = os.path.join(root_path, lib_name)
         os.makedirs(sub_path, exist_ok=True)
 
+        # generate source file
         for i in range(file_count):
             istr = '{num:05d}'.format(num=i)
-            test_prefix = 'source'+istr+'.c'
-            with open(os.path.join(sub_path, lib_prefix + '_' + test_prefix), 'w') as f:
+            test_file_name = 'source'+istr+'.c'
+            with open(os.path.join(sub_path, lib_name + '_' + test_file_name), 'w') as f:
 
                 # include som C-header
                 f.write('''#include <stdio.h>
@@ -42,6 +52,7 @@ int function''' + jstr + '''(int x)
 }
 ''')
 
+        # generate header file
         for i in range(header_count):
             istr = '{num:05d}'.format(num=i)
             with open(os.path.join(sub_path, 'utils_'+istr+'.h'), 'w') as f:
@@ -50,6 +61,15 @@ int function''' + jstr + '''(int x)
 
 int utils_''' + istr + '''(int x);
 ''')
+
+        # generate Bazel BUILD file
+        with open(os.path.join(sub_path, "BUILD"), 'w') as f:
+            f.write('''cc_library(
+    name = "{}",
+    srcs = glob(["*.c", "*.h"]),
+    linkstatic = 1,
+)
+'''.format(lib_name))
 
 
 if (__name__ == '__main__'):
