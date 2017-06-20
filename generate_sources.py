@@ -7,7 +7,7 @@ import shutil
 def regenerate_sources(root_path='src',
                        lib_count=2000,
                        file_count=10,
-                       header_count=100):
+                       header_count=10):
 
     shutil.rmtree(root_path, ignore_errors=True)
 
