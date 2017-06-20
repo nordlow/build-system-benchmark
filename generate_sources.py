@@ -54,14 +54,14 @@ env.CacheDir(cache_dir)
 ''')
 
         for lib_index in range(0, lib_count):
-            lib_name = 'lib' + '{num}'.format(num=lib_index)
+            lib_name = 'lib' + '{}'.format(lib_index)
 
             sub_path = os.path.join(src_path, lib_name)
             os.makedirs(sub_path, exist_ok=True)
 
             # generate source file
             for i in range(file_count):
-                istr = '{num}'.format(num=i)
+                istr = '{}'.format(i)
                 test_file_name = 'source'+istr+'.c'
                 with open(os.path.join(sub_path, lib_name + '_' + test_file_name), 'w') as f:
 
@@ -73,7 +73,7 @@ env.CacheDir(cache_dir)
 
                     # include local headers
                     for j in range(header_count):
-                        jstr = '{num}'.format(num=j)
+                        jstr = '{}'.format(j)
                         f.write('''#include "utils_''' + jstr + '''.h"\n''')
 
                         f.write('''
@@ -85,7 +85,7 @@ env.CacheDir(cache_dir)
 
             # generate header file
             for i in range(header_count):
-                istr = '{num}'.format(num=i)
+                istr = '{}'.format(i)
                 with open(os.path.join(sub_path, 'utils_'+istr+'.h'), 'w') as f:
                     f.write('''#include <stdio.h>
     #include <stdlib.h>
