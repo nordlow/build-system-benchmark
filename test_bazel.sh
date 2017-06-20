@@ -9,10 +9,11 @@ JOB_COUNT=$((${CPU_COUNT} + 1))
 # sudo ./increase_inotify_limits.sh    # needed by Bazel's flag `--watchfs`
 
 # NOTE disabled: --experimental_action_listener=//:cppcheck_c_cpp
+# NOTE disabled: --watchfs
 
 # build
 pushd src
-time bazel --watchfs \
+time bazel \
      build \
      --copt="-Wall" \
      -j ${JOB_COUNT} \
