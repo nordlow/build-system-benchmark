@@ -14,7 +14,6 @@ echo "Benchmarking Bazel ..."
 pushd src
 time bazel \
      build \
-     --copt="-Wall" \
      -j ${JOB_COUNT} \
      //... # TODO try out --watchfs when it works
 popd
