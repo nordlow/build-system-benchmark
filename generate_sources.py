@@ -5,7 +5,7 @@ import shutil
 
 
 def regenerate_sources(src_path='src',
-                       lib_count=1,
+                       lib_count=2000,
                        file_count=10,
                        header_count=10):
 
@@ -15,6 +15,10 @@ def regenerate_sources(src_path='src',
 
     # generate top Bazel WORKSPACE file
     with open(os.path.join("WORKSPACE"), 'w') as f:
+        f.write('''''')
+
+    # generate top Buck file
+    with open(os.path.join(".buckconfig"), 'w') as f:
         f.write('''''')
 
     # empty src tree
@@ -95,6 +99,14 @@ env.CacheDir(cache_dir)
     name = "{}",
     srcs = glob(["*.c", "*.h"]),
     linkstatic = 1,
+)
+'''.format(lib_name))
+
+            # generate Buck BUCK file
+            with open(os.path.join(sub_path, "BUCK"), 'w') as f:
+                f.write('''cxx_library(
+    name = "{}",
+    srcs = glob(["*.c", "*.h"]),
 )
 '''.format(lib_name))
 

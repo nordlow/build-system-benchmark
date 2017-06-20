@@ -7,4 +7,4 @@ echo
 echo "######################"
 echo "Benchmarking Buck ..."
 
-time buck build -j ${JOB_COUNT} :bench
+time buck build -j ${JOB_COUNT} //...
