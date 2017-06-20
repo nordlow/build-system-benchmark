@@ -13,9 +13,9 @@ JOB_COUNT=$((${CPU_COUNT} + 1))
 # NOTE disable: --copt="-Wall"
 
 # build
-pushd src
-time bazel \
-     build \
-     -j ${JOB_COUNT} \
-     //... # TODO try out --watchfs when it works
-popd
+echo
+echo "######################"
+echo "Benchmarking Bazel ..."
+pushd src > /dev/null
+time bazel build -j ${JOB_COUNT} //...
+popd > /dev/null

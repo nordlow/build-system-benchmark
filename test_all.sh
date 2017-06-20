@@ -16,8 +16,5 @@ echo
 echo "######################"
 echo "Benchmarking Bazel ..."
 pushd src > /dev/null
-time bazel \
-     build \
-     -j ${JOB_COUNT} \
-     //... # TODO try out --watchfs when it works
+time bazel build -j ${JOB_COUNT} //...
 popd > /dev/null
