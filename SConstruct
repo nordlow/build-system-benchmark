@@ -24,4 +24,5 @@ except:
     pass                        # ok if exists
 env.CacheDir(cache_dir)
 
-env.Library(target=os.path.join(build_dir, 'benchscons'), source=env.Glob('src/*.c'))
+env.Library(target=os.path.join(build_dir, 'benchscons'),
+            source=env.Glob('src/*.c'))
