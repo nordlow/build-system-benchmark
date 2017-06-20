@@ -17,7 +17,7 @@ build_dir = 'build/scons'
 home_dir = os.path.expanduser('~')
 
 # setup cache
-cache_dir = os.path.join(home_dir, '.cache/scons')
+cache_dir = os.path.join(home_dir, '.cache', 'scons')
 try:
     os.makedirs(cache_dir)
 except:
