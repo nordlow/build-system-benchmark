@@ -6,3 +6,6 @@ src
 bazel-*
 .buckd
 buck-out
+SConstruct
+BUILD
+WORKSPACE
