@@ -22,7 +22,33 @@ def regenerate_sources(src_path='src',
 
     os.makedirs(src_path, exist_ok=True)
 
-    with open(os.path.join("SConstruct"), 'w') as sconstruct_file:
+    with open(os.path.join("SConstruct"), 'w') as sconstruct_f:
+        sconstruct_f.write('''#!/usr/bin/env python2
+
+import os
+import os.path
+import multiprocessing
+
+num_jobs = min(int(multiprocessing.cpu_count() + 1), 9)
+SetOption("num_jobs", num_jobs)
+print("scons: Using at maximum " + str(num_jobs) + " number of jobs")
+
+SetOption('random', 1);         # randomize build order
+
+env = Environment(LINK="ld.gold") # Initialize the environment
+env.Decider('MD5-timestamp')
+
+build_dir = 'build/scons'
+home_dir = os.path.expanduser('~')
+
+# setup cache
+cache_dir = os.path.join(home_dir, '.cache', 'scons')
+try:
+    os.makedirs(cache_dir)
+except:
+    pass                        # ok if exists
+env.CacheDir(cache_dir)
+''')
 
         for lib_index in range(0, lib_count):
             lib_name = 'lib' + '{num:03d}'.format(num=lib_index)
@@ -40,7 +66,7 @@ def regenerate_sources(src_path='src',
                     f.write('''#include <stdio.h>
     #include <stdlib.h>
 
-    ''')
+''')
 
                     # include local headers
                     for j in range(header_count):
@@ -52,7 +78,7 @@ def regenerate_sources(src_path='src',
     {
         return x+1;
     }
-    ''')
+''')
 
             # generate header file
             for i in range(header_count):
@@ -62,16 +88,22 @@ def regenerate_sources(src_path='src',
     #include <stdlib.h>
 
     int utils_''' + istr + '''(int x);
-    ''')
+''')
 
             # generate Bazel BUILD file
             with open(os.path.join(sub_path, "BUILD"), 'w') as f:
                 f.write('''cc_library(
-        name = "{}",
-        srcs = glob(["*.c", "*.h"]),
-        linkstatic = 1,
-    )
-    '''.format(lib_name))
+    name = "{}",
+    srcs = glob(["*.c", "*.h"]),
+    linkstatic = 1,
+)
+'''.format(lib_name))
+
+            # generate SCons Library
+            sconstruct_f.write('''
+env.StaticLibrary(target=os.path.join(build_dir, '{}'),
+                  source=env.Glob('{}'))
+'''.format(lib_name, os.path.join('src', lib_name, '*.c')))
 
 
 if (__name__ == '__main__'):
