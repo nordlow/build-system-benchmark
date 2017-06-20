@@ -54,7 +54,7 @@ env.CacheDir(cache_dir)
 ''')
 
         for lib_index in range(0, lib_count):
-            lib_name = 'lib' + '{num:03d}'.format(num=lib_index)
+            lib_name = 'lib' + '{num:04d}'.format(num=lib_index)
 
             sub_path = os.path.join(src_path, lib_name)
             os.makedirs(sub_path, exist_ok=True)
