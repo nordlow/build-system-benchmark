@@ -5,4 +5,7 @@ JOB_COUNT=$((${CPU_COUNT} + 1))
 
 ./generate_sources.py
 
+echo
+echo "######################"
+echo "Benchmarking SCons ..."
 time scons -s -j ${JOB_COUNT}
