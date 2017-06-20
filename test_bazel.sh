@@ -10,12 +10,12 @@ JOB_COUNT=$((${CPU_COUNT} + 1))
 
 # NOTE disabled: --experimental_action_listener=//:cppcheck_c_cpp
 # NOTE disabled: --watchfs
+# NOTE disable: --copt="-Wall"
 
 # build
 pushd src
 time bazel \
      build \
-     --copt="-Wall" \
      -j ${JOB_COUNT} \
      //... # TODO try out --watchfs when it works
 popd
