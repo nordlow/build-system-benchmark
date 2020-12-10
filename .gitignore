@@ -10,3 +10,7 @@ SConstruct
 BUILD
 WORKSPACE
 .mypy_cache/
+
+# Please output directory and local configuration
+plz-out
+.plzconfig.local
