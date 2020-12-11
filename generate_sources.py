@@ -102,6 +102,16 @@ env.CacheDir(cache_dir)
 )
 '''.format(lib_name))
 
+            # generate Please BUILD.plz file
+            with open(os.path.join(sub_path, "BUILD.plz"), 'w') as f:
+                f.write('''cc_library(
+    name = "{}",
+    srcs = glob(["*.c"]),
+    hdrs = glob(["*.h"]),
+    linkstatic = True,
+)
+'''.format(lib_name))
+
             # generate Buck BUCK file
             with open(os.path.join(sub_path, "BUCK"), 'w') as f:
                 f.write('''cxx_library(
